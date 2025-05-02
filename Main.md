@@ -25,6 +25,8 @@ Unsere App richtet sich an:
 * Eltern, die sehen möchten, ob ihre Kinder sicher in der Schule angekommen sind
 * Betreuungspersonen, die zum Beispiel Senioren begleiten oder betreuen
 
+* Unternehmen, damit sie ihr eigenes Okosystem haben und Daten intern verarbeitet werden.
+
 ## Design und Energieeffizienz
 
 Wir setzen auf ein minimalistisches Design mit dunklen Farben, um den Akkuverbrauch zu reduzieren.
@@ -202,6 +204,16 @@ Hier sind die User Stories, die die Funktionalität der Benutzeroberfläche besc
    - **Ziel**: Der Benutzer kann sein Konto mit einem Ausweisdokument verifizieren.  
    - **Akzeptanzkriterien**: Der Benutzer sendet ein Foto eines Ausweisdokuments und erhält eine Bestätigung nach der Verifizierung.  
    - ![Verification](Bilder/Verification.jpg)
+
+10. **Verifizierung bei der Business Variante**  
+   - **Ziel**: Kann indiviuell angepasst werden.  
+   - **Akzeptanzkriterien**: Das Unternehmen kann selbst entscheiden, wie die Verifizierung abläuft.  
+   - ![Verification](Bilder/RegistErfolgreich.jpg)
+
+11.  **Lokale Hilfe**  
+   - **Ziel**: Der Benutzer kann bei Gefahren einen Hilfeton abspielen, um sich aufmerksam zu machen.  
+   - **Akzeptanzkriterien**: Der Benutzer kann einen Hilfe Button antippen.  
+   - ![Verification](Bilder/sos.jpg)
 
 ---
 
@@ -416,6 +428,11 @@ Anwendungsdomäne)
 ### 5. **Verifizierung mit Ausweisdokument Diagramm**
 ![veri](Bilder/veri_diagramm.PNG)  
 *Beschriftung:* Diagramm, das den Prozess der Verifizierung des Benutzers mittels Ausweisdokument beschreibt, mit Fotoaufnahme und Bestätigung.
+
+---
+### 6. **SOS System Diagramm**
+![veri](Bilder/sosDiagramm.PNG)  
+*Beschriftung:* Diagramm, das den Prozess der des SOS System samt tutorial zeigt.
 
 ---
 

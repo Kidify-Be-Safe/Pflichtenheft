@@ -189,6 +189,8 @@ Hier sind die User Stories, die die Funktionalität der Benutzeroberfläche besc
 6. **Technischer Support**  
    - **Ziel**: Einfache Möglichkeit, auf den technischen Support zuzugreifen.  
    - **Akzeptanzkriterien**: Ein sichtbarer Support-Button und telefonischer Support.  
+   - ![Support](Bilder/support.jpg)
+   - ![Website-Support](Bilder/WebsiteSupport.jpg)
 
 7. **Account dauerhaft löschen**  
    - **Ziel**: Benutzer können ihr Konto vollständig löschen.  

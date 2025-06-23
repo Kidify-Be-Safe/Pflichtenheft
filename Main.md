@@ -77,8 +77,8 @@ um sie beispielsweise der Polizei oder Angehörigen zur Verfügung zu stellen.
 
 | Funktion / Relevanz | Name | Kontakt / Verfügbarkeit | Wissen | Interessen / Ziele |
 | ------------------- | ---- | ----------------------- | ------ | ------------------ |
-| Entwickler und Gesellschafter, Verantwortlicher für die App-Entwicklung (Frontend, Android-Client) | Matteo Antonuccio | matteo@antozstudios.de, Montag bis Freitag von 8 bis 18 Uhr erreichbar, Herford | Entwickelt das Frontend und den Android-Client der App | Erfolgreiche Markteinführung der App, benutzerfreundliche Oberfläche |
-| Entwickler und Gesellschafter, Verantwortlicher für das Backend und Management-Seite | Moritz Luetzkendorf | moritz@antozstudios.de, Montag bis Freitag von 8 bis 18 Uhr erreichbar, Herford | Verantwortlich für das Backend und das Bauen der Management-Seite | Stabile Infrastruktur und effizientes Backend für die App und Webclient |
+| Entwickler und Gesellschafter, Verantwortlicher für die App-Entwicklung (Frontend, Android-Client) | Matteo Antonuccio | matteo@kidify.de, Montag bis Freitag von 8 bis 18 Uhr erreichbar, Herford | Entwickelt das Frontend und den Android-Client der App | Erfolgreiche Markteinführung der App, benutzerfreundliche Oberfläche |
+| Entwickler und Gesellschafter, Verantwortlicher für das Backend und Management-Seite | Moritz Luetzkendorf | moritz@kidify.de, Montag bis Freitag von 8 bis 18 Uhr erreichbar, Herford | Verantwortlich für das Backend und das Bauen der Management-Seite | Stabile Infrastruktur und effizientes Backend für die App und Webclient |
 | Testpartner (Altenheime), Feedbackgeber zu Benutzerfreundlichkeit und Barrierefreiheit | Altenheim Herford | kontakt@altenheim-hanse.stadt.de, werktags erreichbar, Herford | Erfahrung in der Arbeit mit älteren Menschen, Fokus auf Barrierefreiheit und einfache Bedienung | Einfache Nutzung, hohe Akzeptanz bei älteren Nutzern, Verbesserung der Lebensqualität |
 | Testpartner (Schulen), Feedbackgeber zu Nutzung und Kindersicherheit | Schule Hanse-Stadt Herford | kontakt@schule-hanse.stadt.de, werktags erreichbar, Herford | Erfahrung mit der Nutzung von Apps in Schulen, Fokus auf Sicherheit und Aufsicht | Einfache und sichere Bedienung für Kinder, Förderung von Vertrauen und Kontrolle |
 | Regierung (Auftraggeber), Verantwortlich für die Projektfinanzierung und -überwachung | Herr Mustermann | Musterstrasse 10. Detmold 32756, werktags erreichbar, Detmold | Verantwortlich für die Finanzierung und Projektkoordination | Einhaltung der Projektziele, Datenschutz und Sicherheit für die Bürger |
@@ -378,10 +378,9 @@ Für die Entwicklung unseres Android-Clients verwenden wir eine Vielzahl von Bib
 ### Android Client:
 Der Android-Client nutzt insgesamt zwei APIs zur Kommunikation:
 
-* Unsere hauseigene API, die für das Speichern von Nutzerdaten verantwortlich ist, wie zum Beispiel Koordinaten.
-* Die Koordinaten werden in Form von Längen- und Breitengraden verarbeitet.
-* Zusätzlich verwenden wir die kostenlose Reverse-Geocoding-API "Nominatim" von OpenStreetMap.
-* Diese API wandelt die Koordinaten in lesbare Adressen um.
+  Unsere hauseigene API, die für das Speichern von Nutzerdaten verantwortlich ist, wie zum Beispiel Koordinaten. Die Koordinaten werden in Form von Längen- und Breitengraden verarbeitet.
+  Zusätzlich verwenden wir die kostenlose Reverse-Geocoding-API "Nominatim" von OpenStreetMap.
+  Diese API wandelt die Koordinaten in lesbare Adressen um.
 
 
 

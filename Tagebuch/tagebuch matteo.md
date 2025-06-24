@@ -1,5 +1,7 @@
 ﻿# Devlog
-
+## 24.06.2025
+- Video für die Präsentation 
+- Evaluierung der App vor dem Release
 ## 01.05.2025
 - Bugfix durchgeführt
 ## 30.04.2025

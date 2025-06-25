@@ -2,10 +2,86 @@
 
 # 0 Titelseite
 
-* Projektname
-* Autoren (Vor- und Nachnamen der beteiligten Studierenden)
-* Link zum Source Code Repository
-* Inhaltsverzeichnis
+* Kidify - Be Safe
+* Autoren: Moritz Luetzkendorf, Matteo Antonuccio
+  
+* Link zum Source Code Repository: https://github.com/Kidify-Be-Safe
+  
+  # Inhaltsverzeichnis
+
+- [Anforderungs- und Entwurfsspezifikation ("Pflichtenheft")](#anforderungs--und-entwurfsspezifikation-pflichtenheft)
+- [0 Titelseite](#0-titelseite)
+- [Inhaltsverzeichnis](#inhaltsverzeichnis)
+- [1 Einführung](#1-einführung)
+  - [1.1 Beschreibung](#11-beschreibung)
+- [Unsere Produktidee](#unsere-produktidee)
+  - [Zielgruppen](#zielgruppen)
+  - [Design und Energieeffizienz](#design-und-energieeffizienz)
+  - [Schwächen bestehender Lösungen](#schwächen-bestehender-lösungen)
+  - [Sicherheit und Datenschutz](#sicherheit-und-datenschutz)
+  - [Standortfreigabe und Statusanzeige](#standortfreigabe-und-statusanzeige)
+  - [Einfache Bedienung für alle Altersgruppen](#einfache-bedienung-für-alle-altersgruppen)
+  - [Zugriff auf ältere Daten im Notfall](#zugriff-auf-ältere-daten-im-notfall)
+- [2 Anforderungen](#2-anforderungen)
+  - [2.1 Stakeholder](#21-stakeholder)
+  - [2.2 Funktionale Anforderungen](#22-funktionale-anforderungen)
+      - [Funktionale Anforderungen in der Tabelle:](#funktionale-anforderungen-in-der-tabelle)
+  - [2.3 Nicht-funktionale Anforderungen](#23-nicht-funktionale-anforderungen)
+    - [2.3.1 Rahmenbedingungen:](#231-rahmenbedingungen)
+    - [2.3.2 Betriebsbedingungen:](#232-betriebsbedingungen)
+    - [2.3.3 Qualitätsmerkmale:](#233-qualitätsmerkmale)
+  - [2.4 Graphische Benutzerschnittstelle](#24-graphische-benutzerschnittstelle)
+    - [User Stories für die Benutzeroberfläche](#user-stories-für-die-benutzeroberfläche)
+  - [2.5 Anforderungen im Detail](#25-anforderungen-im-detail)
+    - [Funktionale Gruppen mit User Stories](#funktionale-gruppen-mit-user-stories)
+    - [Misuse-Stories (Sicherheit)](#misuse-stories-sicherheit)
+- [3 Technische Beschreibung](#3-technische-beschreibung)
+  - [3.1 Systemübersicht](#31-systemübersicht)
+  - [3.2 Softwarearchitektur](#32-softwarearchitektur)
+    - [3.2.1 Technologieauswahl](#321-technologieauswahl)
+    - [Android Client:](#android-client)
+  - [Standardbibliotheken von Google Android Studio](#standardbibliotheken-von-google-android-studio)
+  - [Hinzugefügte Bibliotheken](#hinzugefügte-bibliotheken)
+  - [3.3 Schnittstellen](#33-schnittstellen)
+    - [Android Client:](#android-client-1)
+  - [3.3.1 Ereignisse](#331-ereignisse)
+  - [3.4 Datenmodell](#34-datenmodell)
+  - [3.5 Abläufe](#35-abläufe)
+    - [Android Client](#android-client-2)
+    - [1. **Service Status Diagramm**](#1-service-status-diagramm)
+    - [2. **Ampel-Status Diagramm**](#2-ampel-status-diagramm)
+    - [3. **Konto löschen Diagramm**](#3-konto-löschen-diagramm)
+    - [4. **Standortfreigabe Diagramm**](#4-standortfreigabe-diagramm)
+    - [5. **Verifizierung mit Ausweisdokument Diagramm**](#5-verifizierung-mit-ausweisdokument-diagramm)
+    - [6. **SOS System Diagramm**](#6-sos-system-diagramm)
+  - [3.6 Entwurf](#36-entwurf)
+    - [UML-Diagramm des Android Clientes](#uml-diagramm-des-android-clientes)
+  - [3.7 Fehlerbehandlung](#37-fehlerbehandlung)
+  - [3.8 Validierung](#38-validierung)
+  - [3.8 Validierung](#38-validierung-1)
+    - [Relevante (Integrations)-Testfälle, die aus den Use Cases abgeleitet werden können](#relevante-integrations-testfälle-die-aus-den-use-cases-abgeleitet-werden-können)
+      - [1. **Service Status Diagramm**](#1-service-status-diagramm-1)
+      - [2. **Ampel-Status Diagramm**](#2-ampel-status-diagramm-1)
+      - [3. **Konto löschen Diagramm**](#3-konto-löschen-diagramm-1)
+      - [4. **Standortfreigabe Diagramm**](#4-standortfreigabe-diagramm-1)
+      - [](#)
+- [4 Projektorganisation](#4-projektorganisation)
+  - [4.1 Annahmen](#41-annahmen)
+  - [4.2 Verantwortlichkeiten](#42-verantwortlichkeiten)
+    - [Rollen](#rollen)
+      - [Softwarearchitekt](#softwarearchitekt)
+      - [Frontend-Entwickler](#frontend-entwickler)
+      - [Backend-Entwickler](#backend-entwickler)
+      - [Tester](#tester)
+      - [DevOps-Engineer](#devops-engineer)
+    - [Rollenzuordnung](#rollenzuordnung)
+  - [4.3 Grober Projektplan](#43-grober-projektplan)
+    - [Meilensteine](#meilensteine)
+- [5 Anhänge](#5-anhänge)
+  - [5.1 Glossar](#51-glossar)
+  - [5.2 Referenzen](#52-referenzen)
+  - [5.3 Index](#53-index)
+
 
 # 1 Einführung
 

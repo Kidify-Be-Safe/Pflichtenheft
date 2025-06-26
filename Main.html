@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Main.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="anforderungs--und-entwurfsspezifikation-%22pflichtenheft%22">Anforderungs- und Entwurfsspezifikation (&quot;Pflichtenheft&quot;)</h1>
+<h1 id="0-titelseite">0 Titelseite</h1>
+<table>
+<thead>
+<tr>
+<th>Student</th>
+<th>Matrikelnummer</th>
+<th>E-Mail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matteo Antonuccio</td>
+<td>1324516</td>
+<td>matteo.antonuccio@hsbi.de</td>
+</tr>
+<tr>
+<td>Moritz Lützkendorf</td>
+<td>1241228</td>
+<td>moritz.luetzkendorf@hsbi.de</td>
+</tr>
+</tbody>
+</table>
+<p>Das Projekt und seine Repositories finden sich auf <a href="https://github.com/Kidify-Be-Safe">Github</a>.</p>
+<h1 id="inhaltsverzeichnis">Inhaltsverzeichnis</h1>
+<ul>
+<li><a href="#anforderungs--und-entwurfsspezifikation-pflichtenheft">Anforderungs- und Entwurfsspezifikation (&quot;Pflichtenheft&quot;)</a></li>
+<li><a href="#0-titelseite">0 Titelseite</a></li>
+<li><a href="#inhaltsverzeichnis">Inhaltsverzeichnis</a></li>
+<li><a href="#1-einf%C3%BChrung">1 Einführung</a>
+<ul>
+<li><a href="#11-beschreibung">1.1 Beschreibung</a></li>
+</ul>
+</li>
+<li><a href="#unsere-produktidee">Unsere Produktidee</a>
+<ul>
+<li><a href="#zielgruppen">Zielgruppen</a></li>
+<li><a href="#design-und-energieeffizienz">Design und Energieeffizienz</a></li>
+<li><a href="#schw%C3%A4chen-bestehender-l%C3%B6sungen">Schwächen bestehender Lösungen</a></li>
+<li><a href="#sicherheit-und-datenschutz">Sicherheit und Datenschutz</a></li>
+<li><a href="#standortfreigabe-und-statusanzeige">Standortfreigabe und Statusanzeige</a></li>
+<li><a href="#einfache-bedienung-f%C3%BCr-alle-altersgruppen">Einfache Bedienung für alle Altersgruppen</a></li>
+<li><a href="#zugriff-auf-%C3%A4ltere-daten-im-notfall">Zugriff auf ältere Daten im Notfall</a></li>
+</ul>
+</li>
+<li><a href="#2-anforderungen">2 Anforderungen</a>
+<ul>
+<li><a href="#21-stakeholder">2.1 Stakeholder</a></li>
+<li><a href="#22-funktionale-anforderungen">2.2 Funktionale Anforderungen</a>
+<ul>
+<li><a href="#funktionale-anforderungen-in-der-tabelle">Funktionale Anforderungen in der Tabelle:</a></li>
+</ul>
+</li>
+<li><a href="#23-nicht-funktionale-anforderungen">2.3 Nicht-funktionale Anforderungen</a>
+<ul>
+<li><a href="#231-rahmenbedingungen">2.3.1 Rahmenbedingungen:</a></li>
+<li><a href="#232-betriebsbedingungen">2.3.2 Betriebsbedingungen:</a></li>
+<li><a href="#233-qualit%C3%A4tsmerkmale">2.3.3 Qualitätsmerkmale:</a></li>
+</ul>
+</li>
+<li><a href="#24-graphische-benutzerschnittstelle">2.4 Graphische Benutzerschnittstelle</a>
+<ul>
+<li><a href="#user-stories-f%C3%BCr-die-benutzeroberfl%C3%A4che">User Stories für die Benutzeroberfläche</a></li>
+</ul>
+</li>
+<li><a href="#25-anforderungen-im-detail">2.5 Anforderungen im Detail</a>
+<ul>
+<li><a href="#funktionale-gruppen-mit-user-stories">Funktionale Gruppen mit User Stories</a></li>
+<li><a href="#misuse-stories-sicherheit">Misuse-Stories (Sicherheit)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-technische-beschreibung">3 Technische Beschreibung</a>
+<ul>
+<li><a href="#31-system%C3%BCbersicht">3.1 Systemübersicht</a></li>
+<li><a href="#32-softwarearchitektur">3.2 Softwarearchitektur</a>
+<ul>
+<li><a href="#321-technologieauswahl">3.2.1 Technologieauswahl</a></li>
+<li><a href="#android-client">Android Client:</a></li>
+</ul>
+</li>
+<li><a href="#standardbibliotheken-von-google-android-studio">Standardbibliotheken von Google Android Studio</a></li>
+<li><a href="#hinzugef%C3%BCgte-bibliotheken">Hinzugefügte Bibliotheken</a></li>
+<li><a href="#33-schnittstellen">3.3 Schnittstellen</a>
+<ul>
+<li><a href="#android-client-1">Android Client:</a></li>
+</ul>
+</li>
+<li><a href="#331-ereignisse">3.3.1 Ereignisse</a></li>
+<li><a href="#34-datenmodell">3.4 Datenmodell</a></li>
+<li><a href="#35-abl%C3%A4ufe">3.5 Abläufe</a>
+<ul>
+<li><a href="#android-client-2">Android Client</a></li>
+<li><a href="#1-service-status-diagramm">1. <strong>Service Status Diagramm</strong></a></li>
+<li><a href="#2-ampel-status-diagramm">2. <strong>Ampel-Status Diagramm</strong></a></li>
+<li><a href="#3-konto-l%C3%B6schen-diagramm">3. <strong>Konto löschen Diagramm</strong></a></li>
+<li><a href="#4-standortfreigabe-diagramm">4. <strong>Standortfreigabe Diagramm</strong></a></li>
+<li><a href="#5-verifizierung-mit-ausweisdokument-diagramm">5. <strong>Verifizierung mit Ausweisdokument Diagramm</strong></a></li>
+<li><a href="#6-sos-system-diagramm">6. <strong>SOS System Diagramm</strong></a></li>
+</ul>
+</li>
+<li><a href="#36-entwurf">3.6 Entwurf</a>
+<ul>
+<li><a href="#uml-diagramm-des-android-clientes">UML-Diagramm des Android Clientes</a></li>
+</ul>
+</li>
+<li><a href="#37-fehlerbehandlung">3.7 Fehlerbehandlung</a></li>
+<li><a href="#38-validierung">3.8 Validierung</a></li>
+<li><a href="#38-validierung-1">3.8 Validierung</a>
+<ul>
+<li><a href="#relevante-integrations-testf%C3%A4lle-die-aus-den-use-cases-abgeleitet-werden-k%C3%B6nnen">Relevante (Integrations)-Testfälle, die aus den Use Cases abgeleitet werden können</a>
+<ul>
+<li><a href="#1-service-status-diagramm-1">1. <strong>Service Status Diagramm</strong></a></li>
+<li><a href="#2-ampel-status-diagramm-1">2. <strong>Ampel-Status Diagramm</strong></a></li>
+<li><a href="#3-konto-l%C3%B6schen-diagramm-1">3. <strong>Konto löschen Diagramm</strong></a></li>
+<li><a href="#4-standortfreigabe-diagramm-1">4. <strong>Standortfreigabe Diagramm</strong></a></li>
+<li><a href="#"></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-projektorganisation">4 Projektorganisation</a>
+<ul>
+<li><a href="#41-annahmen">4.1 Annahmen</a></li>
+<li><a href="#42-verantwortlichkeiten">4.2 Verantwortlichkeiten</a>
+<ul>
+<li><a href="#rollen">Rollen</a></li>
+</ul>
+</li>
+<li><a href="#software-entwickler-android">Software-Entwickler (Android)</a></li>
+<li><a href="#serveradministrator">Serveradministrator</a></li>
+<li><a href="#datenbankadministrator">Datenbankadministrator</a></li>
+<li><a href="#webseiten-entwickler">Webseiten-Entwickler</a></li>
+<li><a href="#projektorganisation">Projektorganisation</a>
+<ul>
+<li><a href="#rollenzuordnung">Rollenzuordnung</a></li>
+</ul>
+</li>
+<li><a href="#43-grober-projektplan">4.3 Grober Projektplan</a>
+<ul>
+<li><a href="#meilensteine">Meilensteine</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-anh%C3%A4nge">5 Anhänge</a>
+<ul>
+<li><a href="#51-quelllen">5.1 Quelllen</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="1-einf%C3%BChrung">1 Einführung</h1>
+<h2 id="11-beschreibung">1.1 Beschreibung</h2>
+<h1 id="unsere-produktidee">Unsere Produktidee</h1>
+<p>Wir möchten eine Plattform anbieten, mit der Menschen ihren Standort sicher und einfach mit ihren Mitmenschen teilen können.
+Dabei ist es uns wichtig, ein breites Publikum zu erreichen – für mehr Verbindung, Vertrauen und Sicherheit im Alltag.</p>
+<h2 id="zielgruppen">Zielgruppen</h2>
+<p>Unsere App richtet sich an:</p>
+<ul>
+<li>
+<p>Familien, die sich gegenseitig absichern möchten</p>
+</li>
+<li>
+<p>Freunde oder Paare, die ihren Standort freiwillig teilen möchten</p>
+</li>
+<li>
+<p>Eltern, die sehen möchten, ob ihre Kinder sicher in der Schule angekommen sind</p>
+</li>
+<li>
+<p>Betreuungspersonen, die zum Beispiel Senioren begleiten oder betreuen</p>
+</li>
+<li>
+<p>Unternehmen, damit sie ihr eigenes Okosystem haben und Daten intern verarbeitet werden.</p>
+</li>
+</ul>
+<h2 id="design-und-energieeffizienz">Design und Energieeffizienz</h2>
+<p>Wir setzen auf ein minimalistisches Design mit dunklen Farben, um den Akkuverbrauch zu reduzieren.
+Diese Gestaltung sorgt dafür, dass unsere App auch auf älteren Geräten energieeffizient und stabil läuft.</p>
+<h2 id="schw%C3%A4chen-bestehender-l%C3%B6sungen">Schwächen bestehender Lösungen</h2>
+<p>Viele existierende Standort-Apps stoßen auf wiederkehrende Kritik:</p>
+<ul>
+<li>Sie senden den Standort nicht zuverlässig im Hintergrund</li>
+<li>Sie verbrauchen zu viel Strom, besonders bei dauerhafter Nutzung</li>
+<li>Die Bedienung ist oft zu komplex für Kinder oder ältere Menschen</li>
+</ul>
+<p>Unsere App löst diese Probleme gezielt durch technische und gestalterische Optimierungen.</p>
+<h2 id="sicherheit-und-datenschutz">Sicherheit und Datenschutz</h2>
+<p>Wir verzichten bewusst auf Systeme mit E-Mail-Adressen oder Benutzernamen.
+Stattdessen funktioniert die Verbindung über einen einmaligen Code, den beide Nutzer gegenseitig austauschen.
+Die erfolgt entweder durch Scannen oder manuelle Eingabe.</p>
+<p>Der Code basiert auf einem sicheren SHA-256 Hash. Damit erhöhen wir die Sicherheit und erschweren unbefugten Zugriff durch Dritte.</p>
+<h2 id="standortfreigabe-und-statusanzeige">Standortfreigabe und Statusanzeige</h2>
+<ul>
+<li>Jeder Nutzer kann bis zu fünf Personen (Observer) Zugriff auf seinen Standort geben</li>
+<li>Die Koordinaten werden alle zehn Minuten aktualisiert</li>
+<li>Ein Ampelsystem ermöglicht es, den eigenen Status situationsbedingt mitzuteilen
+(zum Beispiel: grün = alles in Ordnung, rot = Gefahr)</li>
+</ul>
+<p><strong>Warum nur fünf Observer?</strong>
+Die Begrenzung auf fünf Kontakte sorgt für gezielte Freigaben, erhöht die Übersicht und schützt die Privatsphäre.</p>
+<h2 id="einfache-bedienung-f%C3%BCr-alle-altersgruppen">Einfache Bedienung für alle Altersgruppen</h2>
+<p>Die Benutzeroberfläche wird bewusst einfach gehalten.
+So können auch Kinder, Senioren und technisch unerfahrene Personen die App problemlos nutzen.</p>
+<h2 id="zugriff-auf-%C3%A4ltere-daten-im-notfall">Zugriff auf ältere Daten im Notfall</h2>
+<p>Frühere Standortdaten werden sicher auf unseren Servern gespeichert.
+Im Ernstfall – etwa bei einer vermissten Person – kann auf diese Daten zugegriffen werden,
+um sie beispielsweise der Polizei oder Angehörigen zur Verfügung zu stellen.</p>
+<h1 id="2-anforderungen">2 Anforderungen</h1>
+<h2 id="21-stakeholder">2.1 Stakeholder</h2>
+<table>
+<thead>
+<tr>
+<th>Funktion / Relevanz</th>
+<th>Name</th>
+<th>Kontakt / Verfügbarkeit</th>
+<th>Wissen</th>
+<th>Interessen / Ziele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entwickler und Gesellschafter, Verantwortlicher für die App-Entwicklung (Frontend, Android-Client)</td>
+<td>Matteo Antonuccio</td>
+<td>matteo@kidify.de, Montag bis Freitag von 8 bis 18 Uhr erreichbar, Herford</td>
+<td>Entwickelt das Frontend und den Android-Client der App</td>
+<td>Erfolgreiche Markteinführung der App, benutzerfreundliche Oberfläche</td>
+</tr>
+<tr>
+<td>Entwickler und Gesellschafter, Verantwortlicher für das Backend und Management-Seite</td>
+<td>Moritz Luetzkendorf</td>
+<td>moritz@kidify.de, Montag bis Freitag von 8 bis 18 Uhr erreichbar, Herford</td>
+<td>Verantwortlich für das Backend und das Bauen der Management-Seite</td>
+<td>Stabile Infrastruktur und effizientes Backend für die App und Webclient</td>
+</tr>
+<tr>
+<td>Testpartner (Altenheime), Feedbackgeber zu Benutzerfreundlichkeit und Barrierefreiheit</td>
+<td>Altenheim Herford</td>
+<td>kontakt@altenheim-hanse.stadt.de, werktags erreichbar, Herford</td>
+<td>Erfahrung in der Arbeit mit älteren Menschen, Fokus auf Barrierefreiheit und einfache Bedienung</td>
+<td>Einfache Nutzung, hohe Akzeptanz bei älteren Nutzern, Verbesserung der Lebensqualität</td>
+</tr>
+<tr>
+<td>Testpartner (Schulen), Feedbackgeber zu Nutzung und Kindersicherheit</td>
+<td>Schule Hanse-Stadt Herford</td>
+<td>kontakt@schule-hanse.stadt.de, werktags erreichbar, Herford</td>
+<td>Erfahrung mit der Nutzung von Apps in Schulen, Fokus auf Sicherheit und Aufsicht</td>
+<td>Einfache und sichere Bedienung für Kinder, Förderung von Vertrauen und Kontrolle</td>
+</tr>
+<tr>
+<td>Regierung (Auftraggeber), Verantwortlich für die Projektfinanzierung und -überwachung</td>
+<td>Herr Mustermann</td>
+<td>Musterstrasse 10. Detmold 32756, werktags erreichbar, Detmold</td>
+<td>Verantwortlich für die Finanzierung und Projektkoordination</td>
+<td>Einhaltung der Projektziele, Datenschutz und Sicherheit für die Bürger</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-funktionale-anforderungen">2.2 Funktionale Anforderungen</h2>
+<ul>
+<li><strong>Benutzerverwaltung</strong>: Verwaltung von Benutzerkonten, einschließlich Registrierung, Verifizierung, Profilverwaltung und Account-Löschung.</li>
+<li><strong>Standortfreigabe</strong>: Die Möglichkeit für den Benutzer, seinen Standort mit anderen zu teilen.</li>
+<li><strong>Standortaktualisierung</strong>: Regelmäßige Aktualisierung des Standorts, um sicherzustellen, dass die geteilten Standortdaten aktuell sind.</li>
+<li><strong>Beenden der Freigabe</strong>: Die Option für den Benutzer, die Standortfreigabe zu stoppen.</li>
+<li><strong>Notfallmanagement</strong>: Zugriff auf frühere Standortdaten durch berechtigte Stellen im Notfall.</li>
+<li><strong>Zugriff auf frühere Standortdaten</strong>: Zugriff auf historische Standortdaten durch autorisierte Stellen wie Polizei oder Angehörige im Falle eines Notfalls.</li>
+<li><strong>Technischer Support</strong>: Unterstützung durch den technischen Support bei Problemen mit der App.</li>
+<li><strong>App-Funktionalitäten</strong>: Die verschiedenen Funktionen der App, die den Benutzern zur Verfügung stehen, z. B. Standortaktualisierungen, Notfallfunktionen und Hintergrundoperationen.</li>
+<li><strong>Hintergrundfunktionalität</strong>: Die Fähigkeit der App, auch im Hintergrund weiter zu laufen und Daten zu aktualisieren.</li>
+<li><strong>Energieeffizienz</strong>: Optimierung der App, um den Stromverbrauch während der Nutzung zu minimieren.</li>
+</ul>
+<h4 id="funktionale-anforderungen-in-der-tabelle">Funktionale Anforderungen in der Tabelle:</h4>
+<table>
+<thead>
+<tr>
+<th>Nr.</th>
+<th>Titel / Kurzbeschreibung</th>
+<th>Akteur(e)</th>
+<th>Vorbedingung</th>
+<th>Beschreibung / Ablauf</th>
+<th>Ergebnis / Zielzustand</th>
+<th>Priorität</th>
+<th>Art der Anforderung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F1</td>
+<td>Standortfreigabe</td>
+<td>Benutzer</td>
+<td>Benutzer ist angemeldet</td>
+<td>Der Benutzer kann seinen aktuellen Standort mit Personen teilen.</td>
+<td>Standort wird für ausgewählte Kontakte sichtbar.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Ampel-Status senden</td>
+<td>Benutzer</td>
+<td>App geöffnet, Benutzer ist angemeldet</td>
+<td>Der Benutzer kann den Status &quot;Grün&quot;, &quot;Gelb&quot; oder &quot;Rot&quot; über ein Ampelsystem setzen.</td>
+<td>Der Status wird in Echtzeit an die Kontakte übermittelt.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>Automatische Standortaktualisierung</td>
+<td>System</td>
+<td>Standortfreigabe aktiv</td>
+<td>Die App aktualisiert alle 10 Minuten automatisch den Standort.</td>
+<td>Standortdaten sind aktuell.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>Kontakt per Code hinzufügen</td>
+<td>Benutzer</td>
+<td>App ist geöffnet</td>
+<td>Benutzer kann andere durch Scannen eines Codes oder manuelle Eingabe hinzufügen.</td>
+<td>Neuer Kontakt wird zur Liste hinzugefügt.</td>
+<td>Mittel</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>Hintergrundfunktionalität</td>
+<td>System</td>
+<td>App ist gestartet</td>
+<td>Die App läuft zuverlässig im Hintergrund weiter, inklusive Standortüberwachung.</td>
+<td>Funktionen bleiben auch bei Minimierung aktiv.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>Zugriff auf frühere Standortdaten</td>
+<td>Polizei, Angehörige, Regierung</td>
+<td>Notfall liegt vor</td>
+<td>Berechtigte Personen können bei Notfällen vergangene Standortdaten abrufen.</td>
+<td>Historie ist einsehbar und nachvollziehbar.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>Standortfreigabe stoppen / pausieren</td>
+<td>Benutzer</td>
+<td>Freigabe ist aktiv</td>
+<td>Der Benutzer kann jederzeit die Standortfreigabe pausieren oder vollständig beenden.</td>
+<td>Standort wird nicht mehr geteilt.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>Technischer Support bei Problemen</td>
+<td>Technischer Support</td>
+<td>Problem wurde gemeldet</td>
+<td>Technischer Support hilft bei technischen Schwierigkeiten mit der App.</td>
+<td>Problem ist gelöst, Nutzer erhält Unterstützung.</td>
+<td>Mittel</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>Behördenzugriff nur mit Sonderfreigabe</td>
+<td>Polizei, Regierung</td>
+<td>Notfall &amp; Berechtigung liegt vor</td>
+<td>Behörden erhalten ausschließlich im Notfall mit gesonderter Genehmigung Zugriff auf Standortdaten.</td>
+<td>Datenschutz ist gewahrt, Zugriff erfolgt nur bei Bedarf.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>Energieeffizienz auf alten Geräten</td>
+<td>System</td>
+<td>App ist installiert</td>
+<td>Die App ist so optimiert, dass sie auch auf älteren Geräten energieeffizient läuft.</td>
+<td>Längere Akkulaufzeit, stabile Nutzung.</td>
+<td>Mittel</td>
+<td>Nicht-funktional</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>Einfache Bedienung für Kinder &amp; Senioren</td>
+<td>Benutzer</td>
+<td>App ist installiert</td>
+<td>Die Benutzeroberfläche ist intuitiv und vereinfacht für Kinder und ältere Personen.</td>
+<td>Alle Nutzergruppen können die App nutzen.</td>
+<td>Hoch</td>
+<td>Nicht-funktional</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>Brief zur Verifizierung</td>
+<td>System</td>
+<td>Registrierung abgeschlossen</td>
+<td>Nach Registrierung erhält der Nutzer per Post einen Brief mit Anweisungen zur Verifizierung.</td>
+<td>Brief ist angekommen, Nutzer wird zur Verifizierung aufgefordert.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F13</td>
+<td>Verifizierung mit Ausweisdokument</td>
+<td>Benutzer</td>
+<td>Brief zur Verifizierung erhalten</td>
+<td>Der Benutzer lädt zur Verifizierung eine Ausweiskopie hoch.</td>
+<td>Nutzer gilt als verifiziert.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F14</td>
+<td>Freischaltung durch technischen Support</td>
+<td>Technischer Support</td>
+<td>Verifizierung erfolgreich abgeschlossen</td>
+<td>Der Support prüft die Verifizierung und gibt den Nutzer anschließend für die App frei.</td>
+<td>Nutzer kann App-Funktionen vollständig nutzen.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F15</td>
+<td>Manuelle Standortaktualisierung per Ampel</td>
+<td>Benutzer</td>
+<td>App geöffnet, Standortfreigabe aktiv</td>
+<td>Wenn der Nutzer auf den Ampel-Status tippt, wird der Standort sofort manuell aktualisiert.</td>
+<td>Neuer Standort wird sofort an Kontakte übertragen.</td>
+<td>Mittel</td>
+<td>Funktional</td>
+</tr>
+<tr>
+<td>F16</td>
+<td>Account dauerhaft löschen</td>
+<td>Benutzer</td>
+<td>Benutzer ist angemeldet</td>
+<td>Der Nutzer kann seinen Account samt aller Daten dauerhaft löschen.</td>
+<td>Account und Daten werden vollständig entfernt.</td>
+<td>Hoch</td>
+<td>Funktional</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="23-nicht-funktionale-anforderungen">2.3 Nicht-funktionale Anforderungen</h2>
+<h3 id="231-rahmenbedingungen">2.3.1 Rahmenbedingungen:</h3>
+<ul>
+<li><strong>Datenschutz und Sicherheitsrichtlinien</strong>: Die App muss alle relevanten Datenschutz- und Sicherheitsrichtlinien gemäß der DSGVO einhalten.</li>
+<li><strong>Kompatibilität</strong>: Die App sollte auf gängigen mobilen Geräten (Android ab Version 14) lauffähig sein.</li>
+</ul>
+<h3 id="232-betriebsbedingungen">2.3.2 Betriebsbedingungen:</h3>
+<ul>
+<li><strong>Android-Kompatibilität</strong>: Die App muss auf Android-Geräten mit Version 14 und höher problemlos funktionieren.</li>
+<li><strong>Entwicklung</strong>: Die App muss in Java für Android entwickelt werden.</li>
+<li><strong>Betriebssystem-Updates</strong>: Die App sollte kontinuierlich mit den neuesten Betriebssystemupdates kompatibel bleiben.</li>
+</ul>
+<h3 id="233-qualit%C3%A4tsmerkmale">2.3.3 Qualitätsmerkmale:</h3>
+<table>
+<thead>
+<tr>
+<th>Qualitätsmerkmal</th>
+<th>sehr gut</th>
+<th>gut</th>
+<th>normal</th>
+<th>nicht relevant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zuverlässigkeit</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><strong>Fehlertoleranz</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Wiederherstellbarkeit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Ordnungsmäßigkeit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Richtigkeit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Konformität</strong></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Benutzerfreundlichkeit</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><strong>Installierbarkeit</strong></td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Verständlichkeit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Erlernbarkeit</strong></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Bedienbarkeit</strong></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Zeitverhalten</strong></td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Effizienz</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><strong>Sicherheit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Analysierbarkeit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Modifizierbarkeit</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><strong>Stabilität</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Prüfbarkeit</strong></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="24-graphische-benutzerschnittstelle">2.4 Graphische Benutzerschnittstelle</h2>
+<h3 id="user-stories-f%C3%BCr-die-benutzeroberfl%C3%A4che">User Stories für die Benutzeroberfläche</h3>
+<p>Hier sind die User Stories, die die Funktionalität der Benutzeroberfläche beschreiben:</p>
+<ol>
+<li>
+<p><strong>Registrierung und Verifizierung</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Ein einfaches Registrierungsformular zur Kontoerstellung.</li>
+<li><strong>Akzeptanzkriterien</strong>: Eingabe von E-Mail, Passwort, Vorname, Nachname, Wohnort, Straße, PLZ und eine Verifizierungs-E-Mail nach der Registrierung.</li>
+<li><img src="Bilder/Signup.jpg" alt="Signup"></li>
+</ul>
+</li>
+<li>
+<p><strong>Standortfreigabe</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Möglichkeit, den eigenen Standort zu teilen und zu kontrollieren, wer Zugriff hat.</li>
+<li><strong>Akzeptanzkriterien</strong>: Standort wird alle 10 Minuten geteilt, und es gibt eine Möglichkeit, Personen zu entfernen.</li>
+<li><img src="Bilder/DeleteUser.jpg" alt="DeleteUser"></li>
+</ul>
+</li>
+<li>
+<p><strong>Ampel-Status setzen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Benutzer können ihren Status in Form eines Ampelsystems anpassen.</li>
+<li><strong>Akzeptanzkriterien</strong>: Die Auswahl der Farben (Grün, Gelb, Rot) und Echtzeit-Übertragung an andere.</li>
+<li><img src="Bilder/Ampel.jpg" alt="Ampel"></li>
+</ul>
+</li>
+<li>
+<p><strong>Standortfreigabe pausieren oder stoppen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Möglichkeit, die Standortfreigabe jederzeit zu stoppen.</li>
+<li><strong>Akzeptanzkriterien</strong>: Button „Beenden“ zum Stoppen des Hintergrundservices und die sofortige Beendigung der Standortfreigabe.</li>
+<li><img src="Bilder/ServiceA.jpg" alt="ServiceA"></li>
+</ul>
+</li>
+<li>
+<p><strong>Benutzerfreundlichkeit für Kinder und Senioren</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Benutzeroberfläche, die einfach zu bedienen ist, insbesondere für Kinder und Senioren.</li>
+<li><strong>Akzeptanzkriterien</strong>: Klare Struktur mit großen Schaltflächen und einfachen Symbolen.</li>
+<li><img src="Bilder/MainActivity.jpg" alt="MainActivity"></li>
+</ul>
+</li>
+<li>
+<p><strong>Technischer Support</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Einfache Möglichkeit, auf den technischen Support zuzugreifen.</li>
+<li><strong>Akzeptanzkriterien</strong>: Ein sichtbarer Support-Button und telefonischer Support.</li>
+<li><img src="Bilder/support.jpg" alt="Support"></li>
+<li><img src="Bilder/WebsiteSupport.jpg" alt="Website-Support"></li>
+</ul>
+</li>
+<li>
+<p><strong>Account dauerhaft löschen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Benutzer können ihr Konto vollständig löschen.</li>
+<li><strong>Akzeptanzkriterien</strong>: Möglichkeit, den Account über Einstellungen zu löschen und Bestätigung, dass der Account und die Daten entfernt wurden.</li>
+<li><img src="Bilder/DeleteAccount.jpg" alt="DeleteAccount"></li>
+</ul>
+</li>
+<li>
+<p><strong>Energieeffizienz auf den Geräten</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Die App soll möglichst wenig Energie verbrauchen.</li>
+<li><strong>Akzeptanzkriterien</strong>: Die App verbraucht weniger Energie durch den Einsatz eines Hintergrundservices.</li>
+<li><img src="Bilder/Service.jpg" alt="Service"></li>
+</ul>
+</li>
+<li>
+<p><strong>Verifizierung mit Ausweisdokument</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Der Benutzer kann sein Konto mit einem Ausweisdokument verifizieren.</li>
+<li><strong>Akzeptanzkriterien</strong>: Der Benutzer sendet ein Foto eines Ausweisdokuments und erhält eine Bestätigung nach der Verifizierung.</li>
+<li><img src="Bilder/Verification.jpg" alt="Verification"></li>
+</ul>
+</li>
+<li>
+<p><strong>Verifizierung bei der Business Variante</strong></p>
+</li>
+</ol>
+<ul>
+<li><strong>Ziel</strong>: Kann indiviuell angepasst werden.</li>
+<li><strong>Akzeptanzkriterien</strong>: Das Unternehmen kann selbst entscheiden, wie die Verifizierung abläuft.</li>
+<li><img src="Bilder/RegistErfolgreich.jpg" alt="Verification"></li>
+</ul>
+<ol start="11">
+<li><strong>Lokale Hilfe</strong></li>
+</ol>
+<ul>
+<li><strong>Ziel</strong>: Der Benutzer kann bei Gefahren einen Hilfeton abspielen, um sich aufmerksam zu machen.</li>
+<li><strong>Akzeptanzkriterien</strong>: Der Benutzer kann einen Hilfe Button antippen.</li>
+<li><img src="Bilder/sos.jpg" alt="Verification"></li>
+</ul>
+<hr>
+<h2 id="25-anforderungen-im-detail">2.5 Anforderungen im Detail</h2>
+<p>In diesem Abschnitt werden die <strong>detaillierten Anforderungen</strong> beschrieben, die die Funktionalität und Sicherheit der App betreffen. Hier geht es um die <strong>genauen Akzeptanzkriterien</strong>, Prioritäten und mögliche <strong>Misuse-Stories</strong> (Missbrauchsszenarien).</p>
+<h3 id="funktionale-gruppen-mit-user-stories">Funktionale Gruppen mit User Stories</h3>
+<p><strong>A. Registrierung &amp; Verifizierung</strong></p>
+<ol>
+<li>
+<p><strong>Registrierung und Verifizierung</strong></p>
+<ul>
+<li><strong>ID</strong>: A1</li>
+<li><strong>Priorität</strong>: Must</li>
+<li><strong>Akzeptanzkriterien</strong>: Formular mit den nötigen Feldern und eine Verifizierung durch E-Mail.</li>
+</ul>
+</li>
+<li>
+<p><strong>Verifizierung mit Ausweisdokument</strong></p>
+<ul>
+<li><strong>ID</strong>: A2</li>
+<li><strong>Priorität</strong>: Should</li>
+<li><strong>Akzeptanzkriterien</strong>: Foto des Ausweisdokuments wird kopiert und an uns versendet.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>B. Standort &amp; Kontrolle</strong></p>
+<ol>
+<li>
+<p><strong>Standortfreigabe steuern</strong></p>
+<ul>
+<li><strong>ID</strong>: B1</li>
+<li><strong>Priorität</strong>: Must</li>
+<li><strong>Akzeptanzkriterien</strong>: Standortfreigabe alle 10 Minuten und Möglichkeit, Benutzer zu entfernen.</li>
+</ul>
+</li>
+<li>
+<p><strong>Standortfreigabe pausieren oder stoppen</strong></p>
+<ul>
+<li><strong>ID</strong>: B2</li>
+<li><strong>Priorität</strong>: Must</li>
+<li><strong>Akzeptanzkriterien</strong>: Button zum Stoppen der Standortfreigabe und der Hintergrundservices.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>C. Statusanzeige &amp; Kommunikation</strong></p>
+<ol>
+<li><strong>Ampel-Status setzen</strong>
+<ul>
+<li><strong>ID</strong>: C1</li>
+<li><strong>Priorität</strong>: Must</li>
+<li><strong>Akzeptanzkriterien</strong>: Auswahl von verschiedenen Ampelzustände und Echtzeit-Statusaktualisierung.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>D. Benutzerfreundlichkeit &amp; Usability</strong></p>
+<ol>
+<li>
+<p><strong>Benutzerfreundliche Oberfläche für Kinder und Senioren</strong></p>
+<ul>
+<li><strong>ID</strong>: D1</li>
+<li><strong>Priorität</strong>: Must</li>
+<li><strong>Akzeptanzkriterien</strong>: Eine klare Benutzeroberfläche mit großen Schaltflächen und verständlichen Symbolen.</li>
+</ul>
+</li>
+<li>
+<p><strong>Technischer Support</strong></p>
+<ul>
+<li><strong>ID</strong>: D2</li>
+<li><strong>Priorität</strong>: Should</li>
+<li><strong>Akzeptanzkriterien</strong>: Ein leicht zugänglicher Support-Button und telefonischer Kontakt.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>E. Datenschutz &amp; Energieeffizienz</strong></p>
+<ol>
+<li>
+<p><strong>Account dauerhaft löschen</strong></p>
+<ul>
+<li><strong>ID</strong>: E1</li>
+<li><strong>Priorität</strong>: Must</li>
+<li><strong>Akzeptanzkriterien</strong>: Der Benutzer kann den Account löschen und erhält eine Bestätigung.</li>
+</ul>
+</li>
+<li>
+<p><strong>Energieeffizienz</strong></p>
+<ul>
+<li><strong>ID</strong>: E2</li>
+<li><strong>Priorität</strong>: Could</li>
+<li><strong>Akzeptanzkriterien</strong>: Energieeffizienz durch Hintergrunddienste.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="misuse-stories-sicherheit">Misuse-Stories (Sicherheit)</h3>
+<ol>
+<li>
+<p><strong>Standortfreigabe durch Unbefugte</strong></p>
+<ul>
+<li><em>Als System möchte ich verhindern, dass nicht autorisierte Nutzer den Standort anderer sehen können, um Datenschutzverletzungen zu vermeiden.</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Unautorisierte Accountlöschung</strong></p>
+<ul>
+<li><em>Als System möchte ich verhindern, dass Dritte ohne Bestätigung einen Account löschen, um Datenmissbrauch zu vermeiden.</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Spam durch Fake-Accounts</strong></p>
+<ul>
+<li><em>Als System möchte ich verhindern, dass Fake-Accounts erstellt werden, um Spam zu vermeiden – durch Ausweis- oder Briefverifizierung.</em></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="3-technische-beschreibung">3 Technische Beschreibung</h1>
+<h2 id="31-system%C3%BCbersicht">3.1 Systemübersicht</h2>
+<ul>
+<li>Systemarchitekturdiagramm (&quot;Box-And-Arrow&quot; Diagramm)</li>
+<li>Kommunikationsprotokolle, Datenformate
+Das Diagramm in Kapitel &quot;Systemübersicht&quot; ist statisch und nicht dynamisch und stellt
+daher keine Abläufe dar. Abläufe werden im Kapitel &quot;Abläufe&quot; dargestellt. Im Kapitel
+&quot;Systemübersicht&quot; soll genau ein Diagramm dargstellt werden. Das &quot;Box-and-Arrow&quot;-Diagramm
+soll als Systemarchitekturdiagramm eine abstrakte Übersicht über das Softwaresystem
+geben. Dazu stellt es die Rechnerknoten und deren Kommunikationsbeziehungen (Protokoll
+(z.B. HTTP), Datenformat (z.B. JSON)) dar. Also Rechtecke und gerichtete Pfeile. Ähnlich
+einem UML-Deployment-Diagramm, aber noch abstrakter, denn es zeigt nicht die Verteilung
+der Softwarebausteine auf die Rechnerknoten. So erlangt der Leser einen schnellen und
+guten Überblick über das Softwaresystem.</li>
+</ul>
+<h2 id="32-softwarearchitektur">3.2 Softwarearchitektur</h2>
+<ul>
+<li>Darstellung von Softwarebausteinen (Module, Schichten, Komponenten)
+Hier stellen Sie die Verteilung der Softwarebausteine auf die Rechnerknoten dar. Das ist
+die Softwarearchitektur. Zum Beispiel Javascript-Software auf dem Client und JavaSoftware auf dem Server. In der Regel wird die Software dabei sowohl auf dem Client als
+auch auf dem Server in Schichten dargestellt.</li>
+<li>Server</li>
+<li>Web-Schicht</li>
+<li>Logik-Schicht</li>
+<li>Persistenz-Schicht</li>
+<li>Client</li>
+<li>View-Schicht</li>
+<li>Logik-Schicht</li>
+<li>Kommunikation-Schicht
+Die Abhängigkeit ist bei diesen Schichten immer unidirektional von &quot;oben&quot; nach &quot;unten&quot;.
+Die Softwarearchitektur aus Kapitel &quot;Softwarearchitektur&quot; ist demnach detaillierter als
+die Systemübersicht aus dem Kapitel &quot;Systemübersicht&quot;. Die Schichten können entweder als
+Ganzes als ein Softwarebaustein angesehen werden. In der Regel werden die Schichten aber
+noch weiter detailliert und in Softwarebausteine aufgeteilt.</li>
+</ul>
+<h3 id="321-technologieauswahl">3.2.1 Technologieauswahl</h3>
+<p>Beschreiben Sie hier, welche Frameworks / Technologien / Bibliotheken / Datenformate /
+Protokolle benutzt werden.</p>
+<h3 id="android-client">Android Client:</h3>
+<p>Für die Entwicklung unseres Android-Clients verwenden wir eine Vielzahl von Bibliotheken, die sowohl Standardbibliotheken von Google Android Studio als auch benutzerhinzugefügte Bibliotheken umfassen. Das Datenpaket für die Kommunikation umfasst folgende wichtige Elemente:</p>
+<h2 id="standardbibliotheken-von-google-android-studio">Standardbibliotheken von Google Android Studio</h2>
+<ul>
+<li><strong>Google Material Components</strong> – 1.11.0</li>
+<li><strong>ConstraintLayout</strong> – 2.1.4</li>
+<li><strong>Jetpack Compose Foundation</strong> – 1.6.3</li>
+<li><strong>AndroidX Test Espresso Intents</strong> – 3.6.1</li>
+<li><strong>AndroidX Test JUnit</strong> – 1.2.1</li>
+<li><strong>AndroidX Legacy Support v4</strong> – 1.0.0</li>
+<li><strong>AndroidX Multidex</strong> – 2.0.1</li>
+<li><strong>Desugar JDK Libs</strong> – 2.0.2</li>
+<li><strong>JUnit</strong> – 4.13.2</li>
+</ul>
+<h2 id="hinzugef%C3%BCgte-bibliotheken">Hinzugefügte Bibliotheken</h2>
+<ul>
+<li><strong>OkHttp</strong> – 4.12.0</li>
+<li><strong>OSMDroid</strong> – 6.1.18</li>
+<li><strong>Firebase Crashlytics Build Tools</strong> – 3.0.3</li>
+<li><strong>Gson</strong> – 2.10.1</li>
+<li><strong>Jackson Databind</strong> – 2.12.3</li>
+<li><strong>ZXing Android Embedded</strong> – 4.3.0</li>
+<li><strong>Sceneform Filament</strong> – 1.17.1</li>
+<li><strong>Mockito Core</strong> – 3.11.2</li>
+<li><strong>Mockito Core</strong> – 5.11.0</li>
+<li><strong>Mockito Inline</strong> – 5.2.0</li>
+<li><strong>Hamcrest</strong> – 2.2</li>
+</ul>
+<h2 id="33-schnittstellen">3.3 Schnittstellen</h2>
+<h3 id="android-client">Android Client:</h3>
+<p>Der Android-Client nutzt insgesamt zwei APIs zur Kommunikation:</p>
+<p>Unsere hauseigene API, die für das Speichern von Nutzerdaten verantwortlich ist, wie zum Beispiel Koordinaten. Die Koordinaten werden in Form von Längen- und Breitengraden verarbeitet.
+Zusätzlich verwenden wir die kostenlose Reverse-Geocoding-API &quot;Nominatim&quot; von OpenStreetMap.
+Diese API wandelt die Koordinaten in lesbare Adressen um.</p>
+<h2 id="331-ereignisse">3.3.1 Ereignisse</h2>
+<ul>
+<li>In Event-gesteuerten Systemen: Definition der Ereignisse und deren Attribute</li>
+</ul>
+<h2 id="34-datenmodell">3.4 Datenmodell</h2>
+<ul>
+<li>Konzeptionelles Analyseklassendiagramm (logische Darstellung der Konzepte der
+Anwendungsdomäne)</li>
+<li>Modellierung des physikalischen Datenmodells</li>
+<li>RDBMS: ER-Diagramm bzw. Dokumentenorientiert: JSON-Schema</li>
+</ul>
+<h2 id="35-abl%C3%A4ufe">3.5 Abläufe</h2>
+<ul>
+<li>Aktivitätsdiagramme für relevante Use Cases</li>
+</ul>
+<h3 id="android-client">Android Client</h3>
+<h3 id="1-service-status-diagramm">1. <strong>Service Status Diagramm</strong></h3>
+<p><img src="Bilder/service_status.PNG" alt="service"><br>
+<em>Beschriftung:</em> Aktivitätsdiagramm zur Verwaltung des Service-Status der App (z. B. zur Energieeffizienz, Hintergrunddiensten).</p>
+<hr>
+<h3 id="2-ampel-status-diagramm">2. <strong>Ampel-Status Diagramm</strong></h3>
+<p><img src="Bilder/ampel_diagram.PNG" alt="ampel"><br>
+<em>Beschriftung:</em> Diagramm für die Verwaltung des Ampel-Status, der den aktuellen Zustand (Grün, Gelb, Rot) für den Benutzer anzeigt.</p>
+<hr>
+<h3 id="3-konto-l%C3%B6schen-diagramm">3. <strong>Konto löschen Diagramm</strong></h3>
+<p><img src="Bilder/konto_loe.PNG" alt="konto"><br>
+<em>Beschriftung:</em> Diagramm für den Prozess, bei dem der Benutzer sein Konto dauerhaft löscht. Enthält Schritte wie Bestätigung und Datenlöschung.</p>
+<hr>
+<h3 id="4-standortfreigabe-diagramm">4. <strong>Standortfreigabe Diagramm</strong></h3>
+<p><img src="Bilder/Standort_dia.PNG" alt="standort"><br>
+<em>Beschriftung:</em> Aktivitätsdiagramm für die Standortfreigabe des Benutzers, mit Optionen zum Pausieren oder Beenden der Standortübertragung.</p>
+<hr>
+<h3 id="5-verifizierung-mit-ausweisdokument-diagramm">5. <strong>Verifizierung mit Ausweisdokument Diagramm</strong></h3>
+<p><img src="Bilder/veri_diagramm.PNG" alt="veri"><br>
+<em>Beschriftung:</em> Diagramm, das den Prozess der Verifizierung des Benutzers mittels Ausweisdokument beschreibt, mit Fotoaufnahme und Bestätigung.</p>
+<hr>
+<h3 id="6-sos-system-diagramm">6. <strong>SOS System Diagramm</strong></h3>
+<p><img src="Bilder/sosDiagramm.PNG" alt="veri"><br>
+<em>Beschriftung:</em> Diagramm, das den Prozess der des SOS System samt tutorial zeigt.</p>
+<hr>
+<p>für die Darstellung der Interaktion von Akteuren der Use Cases / User Stories</p>
+<ul>
+<li>Abläufe der Kommunikation von Rechnerknoten (z.B. Client/Server)
+in einem Sequenz- oder Aktivitätsdiagramm darstellen</li>
+<li>Modellieren Sie des weiteren die Diagramme, die für das (eigene) Verständnis des
+Softwaresystems hilfreich sind.</li>
+</ul>
+<h2 id="36-entwurf">3.6 Entwurf</h2>
+<ul>
+<li>Detaillierte UML-Diagramme für relevante Softwarebausteine</li>
+</ul>
+<h3 id="uml-diagramm-des-android-clientes">UML-Diagramm des Android Clientes</h3>
+<p><img src="Bilder/UML Diagramm.PNG" alt="UML-Android"></p>
+<h2 id="37-fehlerbehandlung">3.7 Fehlerbehandlung</h2>
+<ul>
+<li>Mögliche Fehler / Exceptions auflisten</li>
+<li>Fehlercodes / IDs sind hilfreich</li>
+<li>Nicht nur Fehler technischer Art (&quot;Datenbankserver nicht erreichbar&quot;) definieren,
+sondern auch im Hinblick auf
+Kapitel 3.8 sind fachliche Fehler wie &quot;Kunde nicht gefunden&quot;. &quot;Nachricht wurde bereits
+gelöscht&quot; o.ä.</li>
+</ul>
+<h2 id="38-validierung">3.8 Validierung</h2>
+<h2 id="38-validierung">3.8 Validierung</h2>
+<h3 id="relevante-integrations-testf%C3%A4lle-die-aus-den-use-cases-abgeleitet-werden-k%C3%B6nnen">Relevante (Integrations)-Testfälle, die aus den Use Cases abgeleitet werden können</h3>
+<h4 id="1-service-status-diagramm">1. <strong>Service Status Diagramm</strong></h4>
+<p><strong>Testfall 1: Überprüfung des Service-Status</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass der Service-Status korrekt aktualisiert wird.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Starte die App.</li>
+<li>Überprüfe, ob der Service-Status im Dashboard korrekt angezeigt wird (z.B. &quot;Aktiv&quot;, &quot;Inaktiv&quot;).</li>
+<li>Führe eine Änderung des Service-Status durch (z.B. durch manuelles Umschalten oder durch eine Systemaktion).</li>
+<li>Überprüfe, ob die Änderung in der App reflektiert wird.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Testfall 2: API-Integration für Service-Status</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass die API den Service-Status korrekt liefert.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Starte die App und rufe die API auf, die den Service-Status liefert.</li>
+<li>Überprüfe, ob die API den richtigen Status liefert (z.B. &quot;Aktiv&quot;, &quot;Inaktiv&quot;).</li>
+<li>Teste das Handling von Fehlern, wenn der API-Aufruf fehlschlägt.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="2-ampel-status-diagramm">2. <strong>Ampel-Status Diagramm</strong></h4>
+<p><strong>Testfall 1: Ampel-Status aktualisieren</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass der Ampel-Status korrekt in der App angezeigt wird.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Starte die App und überprüfe, ob der Ampel-Status (Grün, Gelb, Rot) korrekt angezeigt wird.</li>
+<li>Führe eine Aktion durch, die den Ampel-Status ändern sollte (z.B. eine Änderung der Parameter).</li>
+<li>Überprüfe, ob der Ampel-Status entsprechend angepasst wird.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Testfall 2: API-Integration für Ampel-Status</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass die API den Ampel-Status korrekt liefert und aktualisiert.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Überprüfe, ob die API den Ampel-Status korrekt zurückgibt.</li>
+<li>Teste die API auf die korrekte Handhabung von Übergangszuständen (z.B. von &quot;Gelb&quot; zu &quot;Rot&quot;).</li>
+<li>Teste Fehlerbehandlung, wenn die API nicht erreichbar ist.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="3-konto-l%C3%B6schen-diagramm">3. <strong>Konto löschen Diagramm</strong></h4>
+<p><strong>Testfall 1: Konto löschen Funktion</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass der Benutzer sein Konto sicher löschen kann.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Starte die App und navigiere zum Konto löschen Bereich.</li>
+<li>Initiere den Löschvorgang und überprüfe, ob der Benutzer zur Bestätigung aufgefordert wird.</li>
+<li>Bestätige die Löschung und überprüfe, ob das Konto erfolgreich gelöscht wurde und alle zugehörigen Daten entfernt sind.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Testfall 2: API-Integration für Konto löschen</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass die API den Löschvorgang korrekt ausführt.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Führe eine API-Anfrage aus, die das Löschen eines Kontos simuliert.</li>
+<li>Überprüfe, ob die API den Löschvorgang erfolgreich abgeschlossen hat.</li>
+<li>Teste Fehlerbehandlung, wenn das Löschen des Kontos fehlschlägt.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="4-standortfreigabe-diagramm">4. <strong>Standortfreigabe Diagramm</strong></h4>
+<p><strong>Testfall 1: Standortfreigabe Funktion</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass der Benutzer seinen Standort korrekt freigibt.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Starte die App und überprüfe, ob der Standortfreigabe-Bereich sichtbar ist.</li>
+<li>Starte die Standortfreigabe und überprüfe, ob der Standort korrekt übertragen wird.</li>
+<li>Teste, ob der Benutzer die Freigabe pausieren oder stoppen kann und dass der Status korrekt angezeigt wird.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Testfall 2: API-Integration für Standortfreigabe</strong></p>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass die API den Standort korrekt überträgt und verarbeitet.</li>
+<li><strong>Test:</strong>
+<ul>
+<li>Teste die API auf die korrekte Übertragung des Standorts an den Server.</li>
+<li>Überprüfe, ob der Standort korrekt gespeichert oder genutzt wird.</li>
+<li>Teste das Pausieren und Stoppen der Standortübertragung über die API und stelle sicher, dass der Status korrekt wiedergegeben wird.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id=""></h4>
+<h1 id="4-projektorganisation">4 Projektorganisation</h1>
+<h2 id="41-annahmen">4.1 Annahmen</h2>
+<p>Für die Webseite wurde Hugo verwendet, um schnell und unkompliziert Webseiten zu erstellen. Eine neue Seite wird in Markdown geschrieben und von Hugo in HTML formatiert.
+Der Server (hier VPS) läuft mit Debian Linux. Die Datenbank ist eine PostgreSQL-Installation. Für die RestAPI wird PostgREST verwendet in der Version 12.2.8.
+nginx wird in der Version 1.22.1 verwendet. Bei der Entwicklung der Android-App wurde Android Studio verwendet und es wurde die Programmiersprache Java verwendet.
+Für die Wartung des Servers wurde ein Standart-Terminal unter Linux und SSH verwendet. Das Schreiben der Texte für die Webseite erfolgte im Texteditor vim.</p>
+<p>Auf Github finden sich unter dem Link https://github.com/Kidify-Be-Safe die verschiedenen Repositories zu dem Android-Client und weiteres.</p>
+<p>Die internen Softwareanforderungen sind eine stabile Software, die bei einem Teilausfall der Komponenten nicht zu einem komplett Ausfall führt. Zum Beispiel, dass
+die App weiterhin gestartet werden, obwohl keine Verbindung zur Datenbank besteht.
+Da der Datenaustausch über eine API erfolgt, muss eine konstante Internetverbindung bestehen und der Server muss jederzeit zu erreichen sein. Ein Serverausfall
+führt zu einen Dienstausfall und die App kann zwar geöffnet werden, jedoch sind die Funktionen als Standortsender und -empfänger nicht verfügbar bzw. aufgrund der fehlenden
+Verbindung zur Datenbank nicht ausführbar.</p>
+<h2 id="42-verantwortlichkeiten">4.2 Verantwortlichkeiten</h2>
+<table>
+<thead>
+<tr>
+<th>Komponent</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android-App</td>
+<td>Matteo Antonuccio</td>
+</tr>
+<tr>
+<td>Datenbank</td>
+<td>Moritz Lützkendorf</td>
+</tr>
+<tr>
+<td>Webseite und Server</td>
+<td>Moritz Lützkendorf</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rollen">Rollen</h3>
+<p>Bei einer Gruppengröße von zwei Personen lässt sich lassen sich die Rollen weniger gut verteilen, da es aufgrund der kleinen Gruppengröße es zu einer
+Mehrbelastung kommen würde. Dennoch ist jedes Gruppenmitglied für das Projekt gleich verantwortlich.
+Die Kommunikation bei zwei Personen kann schneller erfolgen als in größeren Gruppen. Es ist möglich, dass sich spontaner über das
+Projekt ausgetauscht werden kann und es können unkomplizierter Meetings abgehalten werden oder kurze Nachrichten ausgetauscht werden. Es muss
+nicht abgestimmt werden, wann es für alle am besten passt, was bei einer größeren Gruppe berücksichtigt werden muss.
+Im Team waren beide Mitglieder für das Projekt in technischer Hinsicht als auch in organisatorischer Hinsicht verantwortlich.
+Aufgrund der Gruppengröße konnten die Verantwortlichkeiten weniger in kleine Stücke aufgeteilt werden. Dies spiegelt jedeglich die eigene Meinung wieder.</p>
+<h2 id="software-entwickler-android">Software-Entwickler (Android)</h2>
+<p>Der Software-Entwickler entwickelt die App und pflegt diese. Er fügt gegebenenfalls neue Features hinzu oder behebt Fehler, die die Funktionalität beeinträchtigen oder
+Fehler im UI. Der Software-Entwickler testet die App auf Fehler und prüft, ob die Funktionen ihre Zweck erfüllen.</p>
+<h2 id="serveradministrator">Serveradministrator</h2>
+<p>Der Server-Admin wartet und pflegt den Server und seine Software. Er installiert, falls benötigt, die benötigten Programme und Pakete. Er spielt Updates ein und sorgt für einen
+regungslosen Ablauf. Da auf den Servern die Webseite und die Datenbank läuft,</p>
+<h2 id="datenbankadministrator">Datenbankadministrator</h2>
+<p>Der Datenbankadministrator kümmert sich um die Datenbank, indem er neue Tabellen und Views erstellt und Berechtigungen auf diese an die gewünschte Person erteilt. Er wartet die Datenbank, pflegt diese und erstellt regelmäßge Updates.
+Fehlende Updates können zu Datenverlusten führen. Der Datenbank-Admin muss sich mit dem Software-Entwickler absprechen, welche Schnittstellen benutzt werden, damit die Daten zwischen der App und der
+Datenbank ausgetauscht werden können. Es muss klar kommunizert werden, welches Protokoll verwendet wird und über welche Domain (bei der RestAPI) die Daten ausgetauscht werden.
+Bei der RestAPI überschneiden sich die Aufgaben des Datenbankadministrators und des Serveradministrators, da für die RestAPI ein Programm auf dem Server installiert werden muss und mit nginx
+die Datenbank nach außen zugänglich gemacht wurde.</p>
+<h2 id="webseiten-entwickler">Webseiten-Entwickler</h2>
+<p>Der Webseiten-Entwickler kümmert sich um die Präsenz des Projektes im Internet. Er gestaltet die Webseite und füllt diese mit wichtigen Informatioen zu dem Projekt (diese Aufgaben können teils auch von
+einem potentiellen Social-Media-Team) übernommen werden. Die Erstellung eines Blogs für die Außendarstellung wäre mit Hugo möglich.</p>
+<h2 id="projektorganisation">Projektorganisation</h2>
+<p>Da bei einer Gruppengröße von zwei Personen es einfacher ist, dass beide Personen die Projektorganisation übernehmen und beide in gleichem Maße für das Projekt verantwortlich sind.
+Eine Aufteilung in einzelne Rollen würde das Projekt zusätzlich verkomplizieren. Bei einer größeren Gruppe, würde es sich anbieten die Aufgaben und Rollen aufzuteilen.
+Somit sind beide Gruppenmitglieder für den reibungslosen Ablauf und Plannung des Projekts zuständig und tragen beide die gleiche Verantwortung gegenüber das Projekt.
+Es fand ein regelmäßger Austausch über Messenger statt sowie Meetings, um die Tabellen und Views für die Datenbank zu besprechen, da diese für die Funktion der App wichtig sind.
+Ebenso wurde sich regelmäßig über den derzeitigen Stand des Projektes ausgetauscht.</p>
+<h3 id="rollenzuordnung">Rollenzuordnung</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Rolle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matteo Antonuccio</td>
+<td>Software-Entwickler (Android) und Projektorganisation</td>
+</tr>
+<tr>
+<td>Moritz Lützkendorf</td>
+<td>Datenbank, Server, Webseite und Projektorganisation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="43-grober-projektplan">4.3 Grober Projektplan</h2>
+<ul>
+<li>Meilensteine</li>
+</ul>
+<h3 id="meilensteine">Meilensteine</h3>
+<ul>
+<li>
+<p>KW 14
+Besprechung des Projektes</p>
+</li>
+<li>
+<p>KW 16 (19.04.2025)</p>
+</li>
+</ul>
+<ul>
+<li>JUnit Test für die Android App</li>
+</ul>
+<ul>
+<li>KW 18 (03.05.)</li>
+</ul>
+<ul>
+<li>Skript fertig gestellt</li>
+</ul>
+<ul>
+<li>KW 24 (10.06.)</li>
+</ul>
+<ul>
+<li>Webseite fertig gestellt</li>
+</ul>
+<ul>
+<li>
+<p>KW 26 (24.06.)
+-Evaluierung der App</p>
+</li>
+<li>
+<p>KW 26
+Abgabe des Projekts</p>
+</li>
+</ul>
+<h1 id="5-anh%C3%A4nge">5 Anhänge</h1>
+<h2 id="51-quelllen">5.1 Quelllen</h2>
+<p>Für die Bilder auf der Webseite wurden Bilder aus dem Internet verwendet:</p>
+<ul>
+<li>
+<p>https://image.stern.de/8204800/t/aU/v2/w1440/r1.3333/-/grossraumbuero.jpg</p>
+</li>
+<li>
+<p>https://katrinheyer.de/wp-content/uploads/2015/06/architekturfotografie-buerogebaeude-aussenansicht-gesamt.jpg</p>
+</li>
+</ul>
+
+</body>
+</html>

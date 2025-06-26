@@ -2,10 +2,14 @@
 
 # 0 Titelseite
 
-* Kidify - Be Safe
-* Autoren: Moritz Luetzkendorf, Matteo Antonuccio
-  
-* Link zum Source Code Repository: https://github.com/Kidify-Be-Safe
+
+| Student | Matrikelnummer | E-Mail |
+|---------|----------------|--------|
+| Matteo Antonuccio | 1324516 | matteo.antonuccio@hsbi.de |
+| Moritz Lützkendorf | 1241228 | moritz.luetzkendorf@hsbi.de |
+
+
+Das Projekt und seine Repositories finden sich auf [Github](https://github.com/Kidify-Be-Safe).
   
   # Inhaltsverzeichnis
 
@@ -69,18 +73,16 @@
   - [4.1 Annahmen](#41-annahmen)
   - [4.2 Verantwortlichkeiten](#42-verantwortlichkeiten)
     - [Rollen](#rollen)
-      - [Softwarearchitekt](#softwarearchitekt)
-      - [Frontend-Entwickler](#frontend-entwickler)
-      - [Backend-Entwickler](#backend-entwickler)
-      - [Tester](#tester)
-      - [DevOps-Engineer](#devops-engineer)
+  - [Software-Entwickler (Android)](#software-entwickler-android)
+  - [Serveradministrator](#serveradministrator)
+  - [Datenbankadministrator](#datenbankadministrator)
+  - [Webseiten-Entwickler](#webseiten-entwickler)
+  - [Projektorganisation](#projektorganisation)
     - [Rollenzuordnung](#rollenzuordnung)
   - [4.3 Grober Projektplan](#43-grober-projektplan)
     - [Meilensteine](#meilensteine)
 - [5 Anhänge](#5-anhänge)
-  - [5.1 Glossar](#51-glossar)
-  - [5.2 Referenzen](#52-referenzen)
-  - [5.3 Index](#53-index)
+  - [5.1 Quelllen](#51-quelllen)
 
 
 # 1 Einführung
@@ -633,63 +635,81 @@ gelöscht" o.ä.
 
 ## 4.1 Annahmen
 
-* Nicht durch den Kunden definierte spezifische Annahmen, Anforderungen und
-Abhängigkeiten
-* Verwendete Technologien (Programmiersprache, Frameworks, etc.)
-* Aufteilung in Repositories gemäß Software- und Systemarchitektur und Softwarebausteinen
-* Einschränkungen, Betriebsbedingungen und Faktoren, die die Entwicklung beeinflussen
-(Betriebssysteme, Entwicklungsumgebung)
-* Interne Qualitätsanforderungen (z.B. Softwarequalitätsmerkmale wie z.B.
-Erweiterbarkeit)
+Für die Webseite wurde Hugo verwendet, um schnell und unkompliziert Webseiten zu erstellen. Eine neue Seite wird in Markdown geschrieben und von Hugo in HTML formatiert.
+Der Server (hier VPS) läuft mit Debian Linux. Die Datenbank ist eine PostgreSQL-Installation. Für die RestAPI wird PostgREST verwendet in der Version 12.2.8. 
+nginx wird in der Version 1.22.1 verwendet. Bei der Entwicklung der Android-App wurde Android Studio verwendet und es wurde die Programmiersprache Java verwendet. 
+Für die Wartung des Servers wurde ein Standart-Terminal unter Linux und SSH verwendet. Das Schreiben der Texte für die Webseite erfolgte im Texteditor vim.
+
+
+Auf Github finden sich unter dem Link https://github.com/Kidify-Be-Safe die verschiedenen Repositories zu dem Android-Client und weiteres.
+
+Die internen Softwareanforderungen sind eine stabile Software, die bei einem Teilausfall der Komponenten nicht zu einem komplett Ausfall führt. Zum Beispiel, dass
+die App weiterhin gestartet werden, obwohl keine Verbindung zur Datenbank besteht.
+Da der Datenaustausch über eine API erfolgt, muss eine konstante Internetverbindung bestehen und der Server muss jederzeit zu erreichen sein. Ein Serverausfall 
+führt zu einen Dienstausfall und die App kann zwar geöffnet werden, jedoch sind die Funktionen als Standortsender und -empfänger nicht verfügbar bzw. aufgrund der fehlenden
+Verbindung zur Datenbank nicht ausführbar.
+
 
 ## 4.2 Verantwortlichkeiten
 
-* Zuordnung von Personen zu Softwarebausteinen aus Kapitel "Systemübersicht" und
-"Softwarearchitektur"
-* Rollendefinition und Zuordnung
-\| Softwarebaustein \| Person\(en\) \|
-\|\-\-\-\-\-\-\-\-\-\-\|\-\-\-\-\-\-\-\-\-\-\-\|
-\| Komponente A \| Thomas Mustermann \|
+
+| Komponent | Person |
+|-----------|--------|
+| Android-App | Matteo Antonuccio |
+| Datenbank | Moritz Lützkendorf |
+| Webseite und Server | Moritz Lützkendorf |
+
 
 ### Rollen
 
-Überlegen Sie, ob es sinnvoll ist, wenn Sie die Rollen für
-Product-Owner und Scrum-Master vergeben, wobei Sie bedenken
-sollten, ob diese Rollen über den gesamten Projektzeitraum
-aktiv sein werden. Eine gleichzeitig Mischung von technischen
-und organisatorischen Rollen ist meist kontroproduktiv. Eine
-zeitlich getrennte Mischung (erst Rolle1, dann Rolle2) könnte
-funktionieren. Neben den oben erwähnten Rollen können folgende
-Rollen sinnvoll sein:
+Bei einer Gruppengröße von zwei Personen lässt sich lassen sich die Rollen weniger gut verteilen, da es aufgrund der kleinen Gruppengröße es zu einer
+Mehrbelastung kommen würde. Dennoch ist jedes Gruppenmitglied für das Projekt gleich verantwortlich.
+Die Kommunikation bei zwei Personen kann schneller erfolgen als in größeren Gruppen. Es ist möglich, dass sich spontaner über das
+Projekt ausgetauscht werden kann und es können unkomplizierter Meetings abgehalten werden oder kurze Nachrichten ausgetauscht werden. Es muss
+nicht abgestimmt werden, wann es für alle am besten passt, was bei einer größeren Gruppe berücksichtigt werden muss.
+Im Team waren beide Mitglieder für das Projekt in technischer Hinsicht als auch in organisatorischer Hinsicht verantwortlich. 
+Aufgrund der Gruppengröße konnten die Verantwortlichkeiten weniger in kleine Stücke aufgeteilt werden. Dies spiegelt jedeglich die eigene Meinung wieder.
 
-#### Softwarearchitekt
+## Software-Entwickler (Android)
 
-Entwirft den Aufbau von Softwaresystemen und trifft Entscheidungen über das Zusammenspiel
-der Softwarebausteine.
+Der Software-Entwickler entwickelt die App und pflegt diese. Er fügt gegebenenfalls neue Features hinzu oder behebt Fehler, die die Funktionalität beeinträchtigen oder 
+Fehler im UI. Der Software-Entwickler testet die App auf Fehler und prüft, ob die Funktionen ihre Zweck erfüllen.
 
-#### Frontend-Entwickler
+## Serveradministrator
 
-Entwickelt graphische oder andere Benutzerschnittstellen, insbesondere das Layout einer
-Anwendung.
+Der Server-Admin wartet und pflegt den Server und seine Software. Er installiert, falls benötigt, die benötigten Programme und Pakete. Er spielt Updates ein und sorgt für einen
+regungslosen Ablauf. Da auf den Servern die Webseite und die Datenbank läuft, 
 
-#### Backend-Entwickler
 
-Implementiert die funktionale Logik der Anwendung. Hierbei werden zudem diverse
-Datenquellen und externe Dienste integriert und für die Anwendung bereitgestellt.
+## Datenbankadministrator
 
-#### Tester
+Der Datenbankadministrator kümmert sich um die Datenbank, indem er neue Tabellen und Views erstellt und Berechtigungen auf diese an die gewünschte Person erteilt. Er wartet die Datenbank, pflegt diese und erstellt regelmäßge Updates. 
+Fehlende Updates können zu Datenverlusten führen. Der Datenbank-Admin muss sich mit dem Software-Entwickler absprechen, welche Schnittstellen benutzt werden, damit die Daten zwischen der App und der 
+Datenbank ausgetauscht werden können. Es muss klar kommunizert werden, welches Protokoll verwendet wird und über welche Domain (bei der RestAPI) die Daten ausgetauscht werden. 
+Bei der RestAPI überschneiden sich die Aufgaben des Datenbankadministrators und des Serveradministrators, da für die RestAPI ein Programm auf dem Server installiert werden muss und mit nginx 
+die Datenbank nach außen zugänglich gemacht wurde.
 
-Erstellt automatische Tests und führt manuelle Tests durch.
 
-#### DevOps-Engineer
+## Webseiten-Entwickler
 
-Ist für die Repositories und das Deployment verantwortlich.
+Der Webseiten-Entwickler kümmert sich um die Präsenz des Projektes im Internet. Er gestaltet die Webseite und füllt diese mit wichtigen Informatioen zu dem Projekt (diese Aufgaben können teils auch von
+einem potentiellen Social-Media-Team) übernommen werden. Die Erstellung eines Blogs für die Außendarstellung wäre mit Hugo möglich.
+
+## Projektorganisation
+
+Da bei einer Gruppengröße von zwei Personen es einfacher ist, dass beide Personen die Projektorganisation übernehmen und beide in gleichem Maße für das Projekt verantwortlich sind.
+Eine Aufteilung in einzelne Rollen würde das Projekt zusätzlich verkomplizieren. Bei einer größeren Gruppe, würde es sich anbieten die Aufgaben und Rollen aufzuteilen.
+Somit sind beide Gruppenmitglieder für den reibungslosen Ablauf und Plannung des Projekts zuständig und tragen beide die gleiche Verantwortung gegenüber das Projekt.
+Es fand ein regelmäßger Austausch über Messenger statt sowie Meetings, um die Tabellen und Views für die Datenbank zu besprechen, da diese für die Funktion der App wichtig sind.
+Ebenso wurde sich regelmäßig über den derzeitigen Stand des Projektes ausgetauscht. 
+
 
 ### Rollenzuordnung
 
 | Name | Rolle |
 | ---- | ----- |
-| Thomas Mustermann | Frontend-Entwickler |
+| Matteo Antonuccio | Software-Entwickler (Android) und Projektorganisation |
+| Moritz Lützkendorf | Datenbank, Server, Webseite und Projektorganisation |
 
 ## 4.3 Grober Projektplan
 
@@ -697,25 +717,30 @@ Ist für die Repositories und das Deployment verantwortlich.
 
 ### Meilensteine
 
-* KW 43 (21.10)
-* Abgabe Pflichtenheft
-* KW 44 (28.10) / Projekt aufsetzen
-* Repository Struktur
-* KW 45 (4.11) / Implementierung
-* Implementierung #3 (Final)
-* KW 48 (18.12) / Abnahmetests
-* manuelle Abnahmetests
-* Präsentation / Software-Demo
+* KW 14
+Besprechung des Projektes
+
+* KW 16 (19.04.2025)
+- JUnit Test für die Android App
+
+* KW 18 (03.05.)
+- Skript fertig gestellt
+
+* KW 24 (10.06.)
+- Webseite fertig gestellt
+
+* KW 26 (24.06.)
+-Evaluierung der App
+
+* KW 26 
+Abgabe des Projekts
 
 # 5 Anhänge
 
-## 5.1 Glossar
+## 5.1 Quelllen
 
-* Definitionen, Abkürzungen, Begriffe
+Für die Bilder auf der Webseite wurden Bilder aus dem Internet verwendet:
 
-## 5.2 Referenzen
+* https://image.stern.de/8204800/t/aU/v2/w1440/r1.3333/-/grossraumbuero.jpg
 
-* Handbücher, Gesetze
-* z.B. Datenschutzgrundverordnung
-
-## 5.3 Index
+* https://katrinheyer.de/wp-content/uploads/2015/06/architekturfotografie-buerogebaeude-aussenansicht-gesamt.jpg
